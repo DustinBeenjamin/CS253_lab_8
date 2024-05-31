@@ -22,7 +22,6 @@ void MakeItem(ItemToPurchase *item){
     TrimNewline(item->itemDescription);
     printf("Enter the item price:\n");
     scanf("%d", &item->itemPrice);
-    getchar();
     printf("Enter the item quantity:\n");
     scanf("%d", &item->itemQuantity);
     getchar();

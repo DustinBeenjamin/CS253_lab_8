@@ -7,13 +7,15 @@
 int main() {
     
     ShoppingCart cart;
-    int command = '1';
+    EmptyCart(&cart);
+    char command = 'w';
 
     printf("Enter customer's name:\n");
     fgets(cart.customerName, MAX_STRING_SIZE, stdin);
+    TrimNewline(cart.customerName);
     printf("Enter today's date (MM/DD/YY):\n");
     fgets(cart.currentDate, MAX_STRING_SIZE, stdin);
-
+    TrimNewline(cart.currentDate);
 
     while (command != 'q') {
         printf("\nPROGRAM MENU\n");
@@ -24,8 +26,10 @@ int main() {
         printf("q - Quit\n\n");
         printf("Choose an option:\n");
 
+        command = getchar();    
+        getchar();
+
         //THIS CANNOT HANDLE MULTIPLE CHARACTER INPUTS
-        command = getchar();
         switch (command) {
         case 'a':
             ItemToPurchase item;
@@ -36,6 +40,7 @@ int main() {
             char target[MAX_STRING_SIZE];
             printf("Enter name of item to remove:\n");
             fgets(target, MAX_STRING_SIZE, stdin);
+            TrimNewline(target);
             RemoveItem(&cart, target);
             break;
         case 'i':

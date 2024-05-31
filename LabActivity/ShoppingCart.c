@@ -28,8 +28,11 @@ void RemoveItem(ShoppingCart *cart, char *itemName) {
 }
 
 int GetNumItemsInCart(ShoppingCart *cart) {
-    printf("Hello GetNum\n");
-    return cart->cartSize;
+    int size = 0;
+    for (int i = 0; i < cart->cartSize; i++) {
+        size += (cart->cartItems[i]).itemQuantity;
+    }
+    return size;
 }
 
 int GetCostOfCart(ShoppingCart *cart) {
@@ -41,12 +44,19 @@ int GetCostOfCart(ShoppingCart *cart) {
 }
 
 void PrintInvoice(ShoppingCart *cart) {
+    printf("%s's Shopping Cart - %s\n", cart->customerName, cart->currentDate);
+    printf("Number of Items: %d\n\n", GetNumItemsInCart(cart));
     for (int i = 0; i < cart->cartSize; i++) {
         PrintItemCost(&(cart->cartItems[i]));
     }
+    printf("\nPrice: $%d\n", GetCostOfCart(cart));
 }
 
 void PrintDescriptions(ShoppingCart *cart) {
-    //FIXME
+    printf("%s's Shopping Cart - %s\n", cart->customerName, cart->currentDate);
+    printf("\nItem Descriptions:\n");
+    for (int i = 0; i < cart->cartSize;  i++) {
+        printf("%s: %s\n", (cart->cartItems[i]).itemName, (cart->cartItems[i]).itemDescription);
+    }
 }
 
